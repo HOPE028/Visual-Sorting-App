@@ -5,6 +5,7 @@ import { bubble } from './SortingAlgorithms/bubble'
 import { selection } from './SortingAlgorithms/selection'
 import { insertion } from './SortingAlgorithms/insertion'
 import { quickSetup } from './SortingAlgorithms/quick'
+import { mergeSetup } from './SortingAlgorithms/merge'
 import './App.css'
 
 const PRIMARY_COLOR = 'cyan'
@@ -13,8 +14,8 @@ const SECONDARY_COLOR = 'red'
 function App() {
   const [SHOW, setSHOW] = useState(true)
   const [VOLUME, setVOLUME] = useState(false)
-  const [SIZE, setSIZE] = useState(100)
-  const [TIME, setTIME] = useState(15)
+  const [SIZE, setSIZE] = useState(300)
+  const [TIME, setTIME] = useState(3)
   const [list, setList] = useState([])
 
   useEffect(() => {
@@ -174,7 +175,30 @@ function App() {
     }
   }
 
-  const merge = () => {}
+  const merge = async () => {
+    let animations = await mergeSetup(list)
+
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName('bar')
+      const isColorChange = i % 3 !== 2
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i]
+        const barOneStyle = arrayBars[barOneIdx].style
+        const barTwoStyle = arrayBars[barTwoIdx].style
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color
+          barTwoStyle.backgroundColor = color
+        }, i * TIME)
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i]
+          const barOneStyle = arrayBars[barOneIdx].style
+          barOneStyle.height = `${newHeight}px`
+        }, i * TIME)
+      }
+    }
+  }
 
   const heap = () => {}
 

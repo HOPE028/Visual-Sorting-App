@@ -20,7 +20,7 @@ export class List extends React.Component {
                 key={index}
                 style={{
                   height: `${items}px`,
-                  width: '10px',
+                  width: '4px',
                   background: 'cyan',
                 }}
                 className='bar'
