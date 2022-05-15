@@ -4,6 +4,7 @@ export function mergeSetup(array) {
   const animations = []
   const auxiliaryArray = array.slice()
   mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations)
+  animations.push(-1, -1)
   return animations
 }
 

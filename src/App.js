@@ -176,6 +176,7 @@ function App() {
   }
 
   const merge = async () => {
+    // setSHOW(false)
     let animations = await mergeSetup(list)
 
     for (let i = 0; i < animations.length; i++) {
@@ -191,11 +192,18 @@ function App() {
           barTwoStyle.backgroundColor = color
         }, i * TIME)
       } else {
-        setTimeout(() => {
-          const [barOneIdx, newHeight] = animations[i]
-          const barOneStyle = arrayBars[barOneIdx].style
-          barOneStyle.height = `${newHeight}px`
-        }, i * TIME)
+        const [barOneIdx, newHeight] = animations[i]
+        if (barOneIdx != -1) {
+          setTimeout(() => {
+            const barOneStyle = arrayBars[barOneIdx].style
+            barOneStyle.height = `${newHeight}px`
+          }, i * TIME)
+        } else {
+          setTimeout(() => {
+            // setSHOW(true)
+            console.log('HERE')
+          }, TIME * animations.length)
+        }
       }
     }
   }
