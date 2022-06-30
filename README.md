@@ -1,3 +1,3 @@
 # Visual Sorting App
-*App development still in progress*
+*App development still in progress*  
 *Documentation still in progress*
