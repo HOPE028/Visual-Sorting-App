@@ -14,7 +14,7 @@ const SECONDARY_COLOR = 'red'
 function App() {
   const [SHOW, setSHOW] = useState(true)
   const [VOLUME, setVOLUME] = useState(false)
-  const [SIZE, setSIZE] = useState(300)
+  const [SIZE, setSIZE] = useState(220)
   const [TIME, setTIME] = useState(3)
   const [list, setList] = useState([])
 

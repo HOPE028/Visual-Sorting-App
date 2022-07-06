@@ -58,7 +58,7 @@ export class Button extends React.Component {
           </button>
           <button
             onClick={this.props.heap}
-            className={`sort ${this.props.show}`}
+            className={`sort false ${this.props.show}`}
           >
             Heap
           </button>
