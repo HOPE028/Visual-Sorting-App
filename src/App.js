@@ -220,6 +220,9 @@ function App() {
 
   return (
     <div>
+      <h1 style={{ color: 'cyan', textAlign: 'center', marginTop: '20px' }}>
+        Visual Sorting
+      </h1>
       <Button
         show={SHOW}
         quit={quit}
@@ -241,7 +244,7 @@ function App() {
         >
           Speed Of Sorting
         </SliderInput>
-        <SliderInput max={300} setValue={setSIZE} value={SIZE} show={SHOW}>
+        <SliderInput max={250} setValue={setSIZE} value={SIZE} show={SHOW}>
           Size of Array
         </SliderInput>
       </div>
