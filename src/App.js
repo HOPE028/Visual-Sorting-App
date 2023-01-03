@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from './Button'
-import { List } from './List'
+import Button from './Button'
+import ViewList from './ViewList'
 import { bubble } from './SortingAlgorithms/bubble'
 import { selection } from './SortingAlgorithms/selection'
 import { insertion } from './SortingAlgorithms/insertion'
 import { quickSetup } from './SortingAlgorithms/quick'
-import { mergeSetup } from './SortingAlgorithms/merge'
+import { getMergeSortAnimations } from './SortingAlgorithms/merge'
 import './App.css'
 
 const PRIMARY_COLOR = 'cyan'
@@ -14,8 +14,8 @@ const SECONDARY_COLOR = 'red'
 function App() {
   const [SHOW, setSHOW] = useState(true)
   const [VOLUME, setVOLUME] = useState(false)
-  const [SIZE, setSIZE] = useState(220)
-  const [TIME, setTIME] = useState(3)
+  const [SIZE, setSIZE] = useState(30)
+  const [TIME, setTIME] = useState(1)
   const [list, setList] = useState([])
 
   useEffect(() => {
@@ -176,9 +176,9 @@ function App() {
   }
 
   const merge = async () => {
-    // setSHOW(false)
-    let animations = await mergeSetup(list)
+    await setSHOW(false)
 
+    const animations = getMergeSortAnimations(list)
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName('bar')
       const isColorChange = i % 3 !== 2
@@ -192,18 +192,16 @@ function App() {
           barTwoStyle.backgroundColor = color
         }, i * TIME)
       } else {
-        const [barOneIdx, newHeight] = animations[i]
-        if (barOneIdx != -1) {
-          setTimeout(() => {
-            const barOneStyle = arrayBars[barOneIdx].style
-            barOneStyle.height = `${newHeight}px`
-          }, i * TIME)
-        } else {
-          setTimeout(() => {
-            // setSHOW(true)
-            console.log('HERE')
-          }, TIME * animations.length)
-        }
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i]
+          const barOneStyle = arrayBars[barOneIdx].style
+          barOneStyle.height = `${newHeight}px`
+        }, i * TIME)
+      }
+      if (animations.length - 1 === i) {
+        setTimeout(() => {
+          setSHOW(true)
+        }, animations.length * TIME)
       }
     }
   }
@@ -226,7 +224,7 @@ function App() {
         heap={heap}
       ></Button>
 
-      <List list={list}></List>
+      <ViewList list={list}></ViewList>
     </div>
   )
 }

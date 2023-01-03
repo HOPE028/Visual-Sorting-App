@@ -1,10 +1,8 @@
-export function mergeSetup(array) {
-  if (array.length <= 1) return array
-
+export function getMergeSortAnimations(array) {
   const animations = []
+  if (array.length <= 1) return array
   const auxiliaryArray = array.slice()
   mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations)
-  animations.push(-1, -1)
   return animations
 }
 
@@ -34,78 +32,46 @@ function doMerge(
   let i = startIdx
   let j = middleIdx + 1
   while (i <= middleIdx && j <= endIdx) {
+    // These are the values that we're comparing; we push them once
+    // to change their color.
     animations.push([i, j])
+    // These are the values that we're comparing; we push them a second
+    // time to revert their color.
     animations.push([i, j])
     if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+      // We overwrite the value at index k in the original array with the
+      // value at index i in the auxiliary array.
       animations.push([k, auxiliaryArray[i]])
       mainArray[k++] = auxiliaryArray[i++]
     } else {
+      // We overwrite the value at index k in the original array with the
+      // value at index j in the auxiliary array.
       animations.push([k, auxiliaryArray[j]])
       mainArray[k++] = auxiliaryArray[j++]
     }
   }
   while (i <= middleIdx) {
+    // These are the values that we're comparing; we push them once
+    // to change their color.
     animations.push([i, i])
+    // These are the values that we're comparing; we push them a second
+    // time to revert their color.
     animations.push([i, i])
+    // We overwrite the value at index k in the original array with the
+    // value at index i in the auxiliary array.
     animations.push([k, auxiliaryArray[i]])
     mainArray[k++] = auxiliaryArray[i++]
   }
   while (j <= endIdx) {
+    // These are the values that we're comparing; we push them once
+    // to change their color.
     animations.push([j, j])
+    // These are the values that we're comparing; we push them a second
+    // time to revert their color.
     animations.push([j, j])
+    // We overwrite the value at index k in the original array with the
+    // value at index j in the auxiliary array.
     animations.push([k, auxiliaryArray[j]])
     mainArray[k++] = auxiliaryArray[j++]
   }
 }
-
-// export async function mergeSetup() {
-//   let arr = [2, 1, 3, 0]
-//   let auxilaryArr = arr.slice()
-//   console.log(arr)
-
-//   divide(auxilaryArr, arr, 0, arr.length - 1)
-
-//   console.log(arr)
-// }
-
-// function divide(auxilaryArr, arr, start, end) {
-//   if (start >= end) return
-
-//   let mid = Math.floor((start + end) / 2)
-
-//   console.log(start, mid, end)
-
-//   divide(auxilaryArr, arr, start, mid)
-//   divide(auxilaryArr, arr, mid + 1, end)
-//   add(auxilaryArr, arr, start, mid, end)
-// }
-
-// function add(auxilaryArr, arr, start, mid, end) {
-//   let i = start
-//   let k = start
-//   let j = mid + 1
-
-//   while (i <= mid && j <= end) {
-//     if (auxilaryArr[i] <= auxilaryArr[j]) {
-//       arr[k++] = auxilaryArr[i++]
-//       // k++
-//       // i++
-//     } else {
-//       arr[k++] = auxilaryArr[j++]
-//       // k++
-//       // j++
-//     }
-//   }
-
-//   while (i <= mid) {
-//     arr[k++] = auxilaryArr[i++]
-//     // k++
-//     // i++
-//   }
-
-//   while (j <= end) {
-//     arr[k++] = auxilaryArr[j++]
-//     // k++
-//     // j++
-//   }
-// }

@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 
-export class Button extends React.Component {
+export default class Button extends React.Component {
   constructor(props) {
     super(props)
   }
