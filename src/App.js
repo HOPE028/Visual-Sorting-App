@@ -246,7 +246,7 @@ function App() {
         </SliderInput>
       </div>
 
-      <ViewList list={list}></ViewList>
+      <ViewList list={list} size={SIZE}></ViewList>
     </div>
   )
 }
