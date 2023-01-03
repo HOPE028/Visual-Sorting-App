@@ -20,43 +20,47 @@ export default class Button extends React.Component {
             QUIT
           </button>
         </div>
-        <div className='sorting'>
-          <button
-            onClick={this.props.bubble}
-            className={`sort ${this.props.show}`}
-          >
-            Bubble
-          </button>
-          <button
-            onClick={this.props.selection}
-            className={`sort ${this.props.show}`}
-          >
-            Selection
-          </button>
-          <button
-            onClick={this.props.insertion}
-            className={`sort ${this.props.show}`}
-          >
-            Insertion
-          </button>
-          <button
-            onClick={this.props.quick}
-            className={`sort ${this.props.show}`}
-          >
-            Quick
-          </button>
-          <button
-            onClick={this.props.merge}
-            className={`sort ${this.props.show}`}
-          >
-            Merge
-          </button>
-          <button
-            onClick={this.props.heap}
-            className={`sort false ${this.props.show}`}
-          >
-            Heap
-          </button>
+        <div className='contain-buttons'>
+          <div className='sorting'>
+            <button
+              onClick={this.props.bubble}
+              className={`sort ${this.props.show}`}
+            >
+              Bubble
+            </button>
+            <button
+              onClick={this.props.selection}
+              className={`sort ${this.props.show}`}
+            >
+              Selection
+            </button>
+            <button
+              onClick={this.props.insertion}
+              className={`sort ${this.props.show}`}
+            >
+              Insertion
+            </button>
+          </div>
+          <div className='sorting'>
+            <button
+              onClick={this.props.quick}
+              className={`sort ${this.props.show}`}
+            >
+              Quick
+            </button>
+            <button
+              onClick={this.props.merge}
+              className={`sort ${this.props.show}`}
+            >
+              Merge
+            </button>
+            <button
+              onClick={this.props.heap}
+              className={`sort false ${this.props.show}`}
+            >
+              Heap
+            </button>
+          </div>
         </div>
       </div>
     )

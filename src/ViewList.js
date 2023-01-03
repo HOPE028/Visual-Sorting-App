@@ -10,7 +10,9 @@ export default function ViewList(props) {
         <div
           className='box'
           style={{
-            width: `${props.size * BARWIDTH + props.size * 2 + BARWIDTH * 3}px`,
+            width: `${
+              props.size * BARWIDTH + props.size * 2 + BARWIDTH * 3 + 2
+            }px`,
           }}
         >
           <div className='container'>
