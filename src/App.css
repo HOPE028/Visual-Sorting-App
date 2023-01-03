@@ -79,3 +79,22 @@ button {
 .slider {
   width: 400px;
 }
+
+.input_sliders {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  border: rgb(8, 0, 255) 3px solid;
+}
+
+.input_sliders h3 {
+  color: rgb(255, 0, 225);
+}
+
+.inputs-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}

@@ -6,6 +6,7 @@ import { selection } from './SortingAlgorithms/selection'
 import { insertion } from './SortingAlgorithms/insertion'
 import { quickSetup } from './SortingAlgorithms/quick'
 import { getMergeSortAnimations } from './SortingAlgorithms/merge'
+import SliderInput from './SliderInput'
 import './App.css'
 
 const PRIMARY_COLOR = 'cyan'
@@ -13,21 +14,30 @@ const SECONDARY_COLOR = 'red'
 
 function App() {
   const [SHOW, setSHOW] = useState(true)
-  const [VOLUME, setVOLUME] = useState(false)
-  const [SIZE, setSIZE] = useState(30)
-  const [TIME, setTIME] = useState(1)
+  const [SIZE, setSIZE] = useState(50)
+  const [TIME, setTIME] = useState(3)
   const [list, setList] = useState([])
 
   useEffect(() => {
-    setArraySize()
+    setArray()
     document.title = 'Sorting Algorithm'
   }, [])
 
-  const changeVolume = () => {
-    setVOLUME(!VOLUME)
+  useEffect(() => {
+    repopulate()
+  }, [SIZE])
+
+  const handleTimeChange = (value) => {
+    setTIME(30 - value)
+    console.log(TIME)
   }
 
-  const setArraySize = () => {
+  const repopulate = () => {
+    setList([])
+    setArray()
+  }
+
+  const setArray = () => {
     for (let a = 0; a <= SIZE; a++) {
       const random = numberRandom(501)
       setList((list) => [...list, random])
@@ -36,7 +46,7 @@ function App() {
 
   const reset = () => {
     setList([])
-    setArraySize()
+    setArray()
   }
 
   const quit = () => {
@@ -211,10 +221,8 @@ function App() {
   return (
     <div>
       <Button
-        volume={VOLUME}
         show={SHOW}
         quit={quit}
-        changeVolume={changeVolume}
         reset={reset}
         bubble={bubbleSort}
         selection={selectionSort}
@@ -223,6 +231,20 @@ function App() {
         merge={merge}
         heap={heap}
       ></Button>
+
+      <div className='inputs-container'>
+        <SliderInput
+          max={29}
+          setValue={handleTimeChange}
+          value={TIME}
+          show={SHOW}
+        >
+          Speed Of Sorting
+        </SliderInput>
+        <SliderInput max={300} setValue={setSIZE} value={SIZE} show={SHOW}>
+          Size of Array
+        </SliderInput>
+      </div>
 
       <ViewList list={list}></ViewList>
     </div>

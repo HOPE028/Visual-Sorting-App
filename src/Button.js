@@ -15,12 +15,7 @@ export default class Button extends React.Component {
           <button className={`${this.props.show}`} onClick={this.props.reset}>
             RESET
           </button>
-          <button
-            onClick={this.props.changeVolume}
-            className={`${this.props.show}`}
-          >
-            {this.props.volume ? 'SOUND ON' : 'SOUND OFF'}
-          </button>
+
           <button className='quit' onClick={this.props.quit}>
             QUIT
           </button>
